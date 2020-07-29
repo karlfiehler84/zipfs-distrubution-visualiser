@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 
 def main(file):
     wordList = []
-    secondList = []
+    indexList = []
+    numOnly = []
     inFile = open(file, "r", encoding="utf8")
 
     for line in inFile:
@@ -12,19 +13,16 @@ def main(file):
             print("read through " + str(len(wordList)) + " words")
 
     for word in wordList:
-        if [word, wordList.count(word)] not in secondList:
+        if [word, wordList.count(word)] not in indexList:
             x = wordList.count(word)
             pair = [word, x]
-            secondList.append(pair)
-            print("indexed " + str(len(secondList)) + " words")
+            indexList.append(pair)
+            print("indexed " + str(len(indexList)) + " words")
 
-    def getNumOnly(list):
-        lost = []
-        for item in list:
-            lost.append(item[1])
-        return lost
+    for item in indexList:
+        numOnly.append(item[1])
 
-    z = sorted(getNumOnly(secondList))
+    z = sorted(numOnly)
     plt.plot(z)
     plt.ylabel("amount of occurences")
     plt.xlabel("index of word")
