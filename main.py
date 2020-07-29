@@ -4,25 +4,19 @@ import matplotlib.pyplot as plt
 def main(file):
     wordList = []
     secondList = []
-    distrList = []
     inFile = open(file, "r", encoding="utf8")
 
     for line in inFile:
         for word in line.split():
             wordList.append(word)
+            print("read through " + str(len(wordList)) + " words")
 
     for word in wordList:
         if [word, wordList.count(word)] not in secondList:
             x = wordList.count(word)
             pair = [word, x]
             secondList.append(pair)
-
-    def getDist(sum, item):
-        return item / sum * 100
-
-    for pair in secondList:
-        distr = (getDist(len(wordList), pair[1]))
-        distrList.append([pair[0], distr])
+            print("indexed " + str(len(secondList)) + " words")
 
     def getNumOnly(list):
         lost = []
